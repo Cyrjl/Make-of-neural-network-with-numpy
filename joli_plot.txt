@@ -1,4 +1,4 @@
-Faire un joli plot comme ça Giulio est content :
+Faire un joli plot :
 
 fig=plt.figure()
 ax1=fig.add_subplot(111, label='Accuracy')
