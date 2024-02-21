@@ -1,28 +1,11 @@
-Tests à faire dans le code :
-
---> changer les hyperparamètres avec les résultats de validation, en mettant la seed :
-- boucle sur le nombre d'epochs
-- taille random des layers (10 fois, garder les meilleures tailles)
-- nombre de layers (entre 1 et 15)
-
---> testing final sur 20000 nouvelles lignes
-- comparer notre accuracy globale avec celle de l'article
-- comparer notre accuracy signal ou background avec celle de l'article
-
-
-
 Plots à faire pour la présentation :
 
-- évolution accuracy et loss pendant le training pour MSE et Binary (comparer les 2)
-- évolution accuracy du validate en fonction du nombre d'epochs pour Binary
-- tableau des tailles et nombre de layers avec l'accuracy de validation (éventuellement)
-- distribution des résultats (0 ou 1) du validate en fonction du nombre d'epochs
-- signal VS background pour les variables discriminantes ou non après le testing
-- signal VS background en fonction des epochs (nuage de points se resserre vers le 0 ou 1, éventuellement)
-- tableau comparant notre accuracy avec celle de l'article
-
-
-
-Autres :
-
-- print accuracy et predicted_list dans l'étape de validation 
+1) predictions histogram with basic 0.5 cut
+2) accuracy as a function of the cut (pas forcément dans présentation mais au moins pour nous)
+--> choose the right cut for the next plots
+3) training acc, validation acc, loss and predictions for MSE and CE_norm
+--> choose CE_norm for the next results after comparing with MSE
+4) training acc, validation acc and loss on same graph using CE_norm
+5) background and signal predictions for training and validation using CE_norm
+6) signal VS background for discriminating (or not) variables after final test
+7) final test comparing our accuracy with the one from the article
