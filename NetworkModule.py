@@ -5,12 +5,12 @@ from typing import (Dict, Tuple, Callable,
                     Sequence, Iterator, NamedTuple)
 Func = Callable[[Tensor], Tensor]
 
-# Class constructiong a generic loss function
+# Class constructing a generic loss function
 
 class Loss:
     def loss(self, predicted: Tensor, actual: Tensor) -> float:
         """ 
-        Compute the loss between predictions and actual labels 
+        Compute the loss between predictions and the actual labels we compare our predictions with
         """
         raise NotImplementedError
 
@@ -43,7 +43,7 @@ class BinCrossEntropy(Loss):
 class Layer:
     def __init__(self) -> None:
 
-        # Store the parameters values and gradients in dictionnaries
+        # Store the parameters values and gradients in dictionaries
         self.params: Dict[str, Tensor] = {}
         self.grads: Dict[str, Tensor] = {}
 
@@ -90,7 +90,7 @@ class Linear(Layer):
         """
         # Compute the gradient parameters for the layer
         # (i,b) @ (b,o) = (i,o)
-        self.grads["w"] =  np.transpose(self.inputs) @ grad
+        self.grads["w"] = np.transpose(self.inputs) @ grad
         self.grads["b"] = grad #(b,o)
     
         # Compute the feed backward pass
@@ -98,7 +98,7 @@ class Linear(Layer):
         return grad @ np.transpose(self.params["w"])
 
 
-#Defining possible activation functions
+# Defining possible activation functions
 
 def tanh(x: Tensor) -> Tensor:
     return np.tanh(x)
@@ -146,7 +146,7 @@ class BatchIterator:
 
     def __call__(self, inputs: Tensor, targets: Tensor) -> Iterator[Batch]:
         """ 
-        Create batch iteratively and yields them one after the other
+        Create batch iteratively and yield them one after the other
         """
         starts = np.arange(0, len(inputs), self.batch_size)
         if self.shuffle:
@@ -161,6 +161,12 @@ class BatchIterator:
 # Class constructing the network, doing the full forward and backward pass and optimizing the parameters
 
 class NeuralNet:
+
+    """
+    Class doing the full forward and backward pass, optimizing the parameters,
+    training and validating the network
+    """
+
     def __init__(self, layers: Sequence[Layer], lr: float = 0.01) -> None:
         self.layers = layers
         # Learning rate
@@ -229,7 +235,7 @@ class NeuralNet:
         val_loss = np.mean(Batch_loss)
         # Decide the label resulting from prediction
         Round_predicted = np.where(Predicted_array >= cut, 1, 0)
-        # Compare all the labels
+        # Compare all the labels to compute the accuracy
         val_acc = np.mean(Round_predicted==Actual_array) * 100
 
         return (val_loss, val_acc, Actual_array, Predicted_array, Input_array)
@@ -265,13 +271,16 @@ class NeuralNet:
                 Batch_loss : Sequence = []
                 Batch_grad : Sequence = []
 
-                predicted = self.forward(batch[0])
+                # Calling the different functions in the right order to train the network :
+                # forward pass, loss computation, backward pass, optimization 
+
+                predicted = self.forward(batch[0]) # batch[0] = inputs
                 for p in predicted:
                     Predicted_list.append(p)
                 for a in batch[1]:
                     Actual_list.append(a)
                     
-                Batch_loss.append(loss.loss(predicted, batch[1]))
+                Batch_loss.append(loss.loss(predicted, batch[1])) # batch[1] = targets
                 grad = loss.grad(predicted, batch[1])
                 Batch_grad.append(grad) 
                 self.backward(grad)
@@ -285,7 +294,7 @@ class NeuralNet:
             epoch_loss = np.mean(Batch_loss)
             # Decide the label resulting from prediction
             Round_predicted = np.where(Predicted_array >= cut, 1, 0)
-            # Compare all the labels for the epoch
+            # Compare all the labels for the epoch to compute the accuracy
             epoch_acc = np.mean(Round_predicted==Actual_array) * 100
 
             Loss_list.append(epoch_loss)
