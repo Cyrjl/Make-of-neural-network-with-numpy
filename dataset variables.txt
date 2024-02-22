@@ -3,7 +3,7 @@ Variables dans le dataset par ordre de discriminance et correspondance dans l'ar
 2) number of extra tracks surviving track quality selection --> (ii)
 3) sum of missing momentum and energy in the c.m. frame --> (iii)
 4) cos(thrustK,thrustother), cosine of the angle between the thrust axis of the signal kaon candidate and the thrust
-axis of all other reconstructed objectscomputed in the c.m. frame --> (v)
+axis of all other reconstructed objects computed in the c.m. frame --> (v)
 5) Fox-Wolfram moment sus --> (vi)
 6) invariant mass of the four-momentum difference between the two colliding beams and the signal kaon,
 recoil mass --> (vii)
