@@ -17,13 +17,13 @@ On this repository, you will find :
 ## How to run the notebook
 
 In a dedicated python environment that has been activated, you can install the packages contained in *requirements.txt* by running:
-'''
+```
 pip install -r requirements.txt
-'''
+```
 then connect on a Jupyter notebook by simply running:
-'''
+```
 jupyter notebook
-'''
+```
 and finally, navigate to the notebook *NetworkNotebook.ipynb* and open it, run it by restarting the kernel and running all cells. It takes about 10 min to run.
 Alternatively, the notebook can be opened in a supported IDE.
 
