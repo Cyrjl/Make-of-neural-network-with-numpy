@@ -27,4 +27,4 @@ jupyter notebook
 and finally, navigate to the notebook *NetworkNotebook.ipynb* and open it, run it by restarting the kernel and running all cells. It takes about 10 min to run.
 Alternatively, the notebook can be opened in a supported IDE.
 
-We are using a random seed for the initialization of the parameters, the thus the results could be different than those presented in the article. 
+We are using a random seed for the initialization of the parameters, thus the results could be different than those presented in the article. 
