@@ -100,12 +100,15 @@ class Linear(Layer):
 
 # Defining possible activation functions
 
+# Activation for hidden layers
 def tanh(x: Tensor) -> Tensor:
     return np.tanh(x)
 
 def tanh_prime(x: Tensor) -> Tensor:
     return 1 - (np.tanh(x))**2
 
+# Final activation at the last layer 
+# to guarantee outuputs between 0 and 1
 def sigmoid(x: Tensor) -> Tensor:
     return 1/(1 + np.exp(-x))
 
