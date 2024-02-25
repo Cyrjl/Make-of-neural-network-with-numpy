@@ -214,13 +214,13 @@ class NeuralNet:
         # in the right order   
         Predicted_list: Sequence =[] 
         Actual_list: Sequence = []
-        Input_list:Sequence = [] 
+        Input_list: Sequence = [] 
         
         for batch in iterator(inputs, targets):
 
             Batch_loss : Sequence = [] 
 
-            predicted = self.forward(batch[0])
+            predicted = self.forward(batch[0]) # batch[0] = inputs
             for p in predicted:
                 Predicted_list.append(p)
             for a in batch[1]:
@@ -228,7 +228,7 @@ class NeuralNet:
             for i in batch[0]:
                 Input_list.append(i)
 
-            Batch_loss.append(loss.loss(predicted, batch[1]))   
+            Batch_loss.append(loss.loss(predicted, batch[1])) # batch[1] = targets 
         
         Predicted_array = np.array(Predicted_list)
         Actual_array = np.array(Actual_list)
